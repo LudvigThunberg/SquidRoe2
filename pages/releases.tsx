@@ -1,15 +1,15 @@
-import { Albums } from "../components/basic/Albums";
-import { SocialsLinks } from "../components/basic/SocialsLinks";
-import { Heading } from "../components/styledComponents/Heading";
+import Error from 'next/error';
+import { Albums } from '../components/basic/Albums';
+import { SocialsLinks } from '../components/basic/SocialsLinks';
+import { Heading } from '../components/styledComponents/Heading';
 import {
   AlbumModel,
   ContactLinkResponse,
   IconModelResponse,
-} from "../models/responseModels";
-import { getIcons, getReleases, getSoc } from "../services/requestService";
-import Error from "next/error";
-import { MotionContainer } from "../components/styledComponents/MotionContainer";
-import { fadeInAndUp } from "../motionAnimations/motionAnimations";
+} from '../models/responseModels';
+import { getIcons, getReleases, getSoc } from '../services/requestService';
+import { MotionContainer } from '../components/styledComponents/MotionContainer';
+import { fadeInAndUp } from '../motionAnimations/motionAnimations';
 
 interface HomeProps {
   links: ContactLinkResponse;
@@ -38,9 +38,9 @@ export default function Releases({
       <Heading
         as="h2"
         css={{
-          "@bp2": { fontSize: "30px" },
-          "@bp3": {
-            fontSize: "70px",
+          '@bp2': { fontSize: '30px' },
+          '@bp3': {
+            fontSize: '70px',
           },
         }}
       >
@@ -57,15 +57,15 @@ export async function getServerSideProps() {
     const res = Promise.all([
       getSoc(
         process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string
+        process.env.NEXT_PUBLIC_API_KEY as string,
       ),
       getReleases(
         process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string
+        process.env.NEXT_PUBLIC_API_KEY as string,
       ),
       getIcons(
         process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string
+        process.env.NEXT_PUBLIC_API_KEY as string,
       ),
     ]);
 
@@ -73,7 +73,8 @@ export async function getServerSideProps() {
 
     const releases = releasesUnsorted.data.sort(
       (a, b) =>
-        parseInt(b.attributes.releaseDate) - parseInt(a.attributes.releaseDate)
+        parseInt(b.attributes.releaseDate, 10) -
+        parseInt(a.attributes.releaseDate, 10),
     );
 
     return { props: { errorCode: NaN, links, releases, icons } };

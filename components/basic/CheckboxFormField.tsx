@@ -1,6 +1,6 @@
-import { useFormContext } from "react-hook-form";
-import { Paragraph } from "../styledComponents/Paragraph";
-import { StyledInput } from "../styledComponents/StyledInput";
+import { useFormContext } from 'react-hook-form';
+import { Paragraph } from '../styledComponents/Paragraph';
+import { StyledInput } from '../styledComponents/StyledInput';
 
 interface FormFieldProps {
   labelText?: string;
@@ -30,19 +30,19 @@ export const CheckboxFormField = ({
   return (
     <>
       <StyledInput
-        css={{ maxWidth: "unset", minWidth: "unset" }}
+        css={{ maxWidth: 'unset', minWidth: 'unset' }}
         type={inputType}
         placeholder={labelText}
         {...register(id, {
-          minLength: minLength,
-          maxLength: maxLength,
-          pattern: pattern,
-          required: required,
+          minLength,
+          maxLength,
+          pattern,
+          required,
         })}
       />
       {errors[id] && (
         <Paragraph
-          css={{ color: "red", background: "transparent", fontSize: "0.8rem" }}
+          css={{ color: 'red', background: 'transparent', fontSize: '0.8rem' }}
         >
           {message}
         </Paragraph>

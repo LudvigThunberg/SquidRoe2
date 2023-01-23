@@ -1,5 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-const mailchimp = require("@mailchimp/mailchimp_marketing");
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+const mailchimp = require('@mailchimp/mailchimp_marketing');
 
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
@@ -8,7 +9,7 @@ mailchimp.setConfig({
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { email, name } = req.body;
 
@@ -17,12 +18,12 @@ export default async function handler(
       process.env.MAILCHIMP_LIST_ID,
       {
         email_address: email,
-        status: "subscribed",
-        tags: ["Website Subscriber"],
+        status: 'subscribed',
+        tags: ['Website Subscriber'],
         merge_fields: {
           FNAME: name,
         },
-      }
+      },
     );
     res.send(response);
   } catch (error: any) {

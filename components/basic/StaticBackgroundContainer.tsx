@@ -1,5 +1,5 @@
-import React from "react";
-import { BackgroundBox } from "../styledComponents/BackgroundBox";
+import React from 'react';
+import { BackgroundBox } from '../styledComponents/BackgroundBox';
 
 type StaticBackgroundContainerProps = {
   children: React.ReactNode;
@@ -7,6 +7,4 @@ type StaticBackgroundContainerProps = {
 
 export const StaticBackgroundContainer = ({
   children,
-}: StaticBackgroundContainerProps) => {
-  return <BackgroundBox>{children}</BackgroundBox>;
-};
+}: StaticBackgroundContainerProps) => <BackgroundBox>{children}</BackgroundBox>;

@@ -1,11 +1,11 @@
-import { getPlaylists, getSoc } from "../services/requestService";
-import Error from "next/error";
-import { ContactLinkResponse, PlaylistModel } from "../models/responseModels";
-import { Heading } from "../components/styledComponents/Heading";
-import { SocialsLinks } from "../components/basic/SocialsLinks";
-import { AllPlaylists } from "../components/basic/AllPlaylists";
-import { MotionContainer } from "../components/styledComponents/MotionContainer";
-import { fadeInAndUp } from "../motionAnimations/motionAnimations";
+import Error from 'next/error';
+import { getPlaylists, getSoc } from '../services/requestService';
+import { ContactLinkResponse, PlaylistModel } from '../models/responseModels';
+import { Heading } from '../components/styledComponents/Heading';
+import { SocialsLinks } from '../components/basic/SocialsLinks';
+import { AllPlaylists } from '../components/basic/AllPlaylists';
+import { MotionContainer } from '../components/styledComponents/MotionContainer';
+import { fadeInAndUp } from '../motionAnimations/motionAnimations';
 
 interface PlaylistsProps {
   errorCode: number;
@@ -31,9 +31,9 @@ export default function Playlists({
       <Heading
         as="h2"
         css={{
-          "@bp2": { fontSize: "30px" },
-          "@bp3": {
-            fontSize: "70px",
+          '@bp2': { fontSize: '30px' },
+          '@bp3': {
+            fontSize: '70px',
           },
         }}
       >
@@ -50,18 +50,18 @@ export async function getServerSideProps() {
     const res = Promise.all([
       getSoc(
         process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string
+        process.env.NEXT_PUBLIC_API_KEY as string,
       ),
       getPlaylists(
         process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string
+        process.env.NEXT_PUBLIC_API_KEY as string,
       ),
     ]);
 
     const [links, playlistsUnsorted] = await res;
 
     const playlists = playlistsUnsorted.data.sort(
-      (a, b) => a.attributes.order - b.attributes.order
+      (a, b) => a.attributes.order - b.attributes.order,
     );
 
     return { props: { errorCode: NaN, links, playlists } };

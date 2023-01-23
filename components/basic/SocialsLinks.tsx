@@ -1,6 +1,6 @@
-import { ContactLinkObject } from "../../models/responseModels";
-import { Box } from "../styledComponents/Box";
-import { SocialMediaLink } from "./SocialMediaLink";
+import { ContactLinkObject } from '../../models/responseModels';
+import { Box } from '../styledComponents/Box';
+import { SocialMediaLink } from './SocialMediaLink';
 
 interface SocialLinksProps {
   data: { data: ContactLinkObject[] };
@@ -8,18 +8,18 @@ interface SocialLinksProps {
 }
 
 export const SocialsLinks = ({ data, onContact }: SocialLinksProps) => {
-  const socialLinks = data.data.map((link) => {
-    return <SocialMediaLink key={link.id} link={link} onContact={onContact} />;
-  });
+  const socialLinks = data.data.map((link) => (
+    <SocialMediaLink key={link.id} link={link} onContact={onContact} />
+  ));
   return (
     <Box
       isOnContact={onContact}
       css={{
-        display: "flex",
-        gap: "10px",
-        background: "transparent",
-        "@bp2": {
-          gap: "20px",
+        display: 'flex',
+        gap: '10px',
+        background: 'transparent',
+        '@bp2': {
+          gap: '20px',
         },
       }}
     >

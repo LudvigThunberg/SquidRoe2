@@ -1,13 +1,11 @@
 import {
   AboutModelResponse,
-  PlaylistModelResponse,
-} from "../models/responseModels";
-import {
   AlbumModelResponse,
   ContactLinkResponse,
   IconModelResponse,
-} from "../models/responseModels";
-import { get, post } from "./handleRequests";
+  PlaylistModelResponse,
+} from '../models/responseModels';
+import { get, post } from './handleRequests';
 
 export const getSoc = async (baseUrl: string, apiKey: string) => {
   const res = await get<ContactLinkResponse>(`${baseUrl}contact-links`, apiKey);
@@ -17,7 +15,6 @@ export const getSoc = async (baseUrl: string, apiKey: string) => {
 
 export const getReleases = async (baseUrl: string, apiKey: string) => {
   const res = await get<AlbumModelResponse>(`${baseUrl}albums`, apiKey);
-  console.log("releases", res.data);
 
   return res;
 };
@@ -37,7 +34,7 @@ export const getPlaylists = async (baseUrl: string, apiKey: string) => {
 export const getAboutContent = async (baseUrl: string, apiKey: string) => {
   const res = await get<AboutModelResponse>(
     `${baseUrl}about-containers`,
-    apiKey
+    apiKey,
   );
 
   return res;

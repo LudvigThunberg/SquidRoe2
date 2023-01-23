@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { EmailForm } from "../components/basic/EmailForm";
-import { SocialsLinks } from "../components/basic/SocialsLinks";
-import { Heading } from "../components/styledComponents/Heading";
-import { MotionContainer } from "../components/styledComponents/MotionContainer";
-import { ContactLinkResponse } from "../models/responseModels";
-import { getSoc } from "../services/requestService";
-import Error from "next/error";
-import { fadeInAndUp } from "../motionAnimations/motionAnimations";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import Error from 'next/error';
+import { EmailForm } from '../components/basic/EmailForm';
+import { SocialsLinks } from '../components/basic/SocialsLinks';
+import { Heading } from '../components/styledComponents/Heading';
+import { MotionContainer } from '../components/styledComponents/MotionContainer';
+import { ContactLinkResponse } from '../models/responseModels';
+import { getSoc } from '../services/requestService';
+import { fadeInAndUp } from '../motionAnimations/motionAnimations';
 
 interface ContactProps {
   links: ContactLinkResponse;
@@ -19,7 +19,7 @@ export default function Contact({ links, errorCode }: ContactProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.pathname === "/contact" && onContact === false) {
+    if (router.pathname === '/contact' && onContact === false) {
       setOnContact(true);
     }
   }, []);
@@ -38,9 +38,9 @@ export default function Contact({ links, errorCode }: ContactProps) {
       <Heading
         as="h2"
         css={{
-          "@bp2": { fontSize: "30px" },
-          "@bp3": {
-            fontSize: "70px",
+          '@bp2': { fontSize: '30px' },
+          '@bp3': {
+            fontSize: '70px',
           },
         }}
       >
@@ -57,7 +57,7 @@ export async function getServerSideProps() {
   try {
     const links = await getSoc(
       process.env.NEXT_PUBLIC_BASE_URL as string,
-      process.env.NEXT_PUBLIC_API_KEY as string
+      process.env.NEXT_PUBLIC_API_KEY as string,
     );
     return { props: { errorCode: NaN, links } };
   } catch (error: any) {

@@ -1,7 +1,8 @@
-import { ContactLinkObject } from "../../models/responseModels";
-import { Img } from "../styledComponents/Img";
-import { StyledALink } from "../styledComponents/StyledALink";
-import { StyledContactPageLink } from "../styledComponents/StyledContactPageLink";
+/* eslint-disable no-nested-ternary */
+import { ContactLinkObject } from '../../models/responseModels';
+import { Img } from '../styledComponents/Img';
+import { StyledALink } from '../styledComponents/StyledALink';
+import { StyledContactPageLink } from '../styledComponents/StyledContactPageLink';
 
 interface SocialMediaLinkProps {
   link: ContactLinkObject;
@@ -12,13 +13,14 @@ export const SocialMediaLink = ({ link, onContact }: SocialMediaLinkProps) => {
   const { contactLink, iconUrl, email } = link.attributes;
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {onContact && email ? (
         <StyledContactPageLink href={`mailto:${email}`}>
           <Img
             css={{
-              width: "100%",
-              borderRadius: "50%",
+              width: '100%',
+              borderRadius: '50%',
             }}
             src={iconUrl}
           />
@@ -27,8 +29,8 @@ export const SocialMediaLink = ({ link, onContact }: SocialMediaLinkProps) => {
         <StyledContactPageLink href={contactLink} target="_blank">
           <Img
             css={{
-              width: "100%",
-              borderRadius: "50%",
+              width: '100%',
+              borderRadius: '50%',
             }}
             src={iconUrl}
           />
@@ -38,8 +40,8 @@ export const SocialMediaLink = ({ link, onContact }: SocialMediaLinkProps) => {
           <StyledALink href={contactLink} target="_blank">
             <Img
               css={{
-                width: "100%",
-                borderRadius: "50%",
+                width: '100%',
+                borderRadius: '50%',
               }}
               src={iconUrl}
             />

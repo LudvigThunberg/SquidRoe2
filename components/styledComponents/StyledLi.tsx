@@ -1,7 +1,7 @@
-import { styled } from "../../stitches.config";
+import { styled } from '../../stitches.config';
 
-export const StyledLi = styled("li", {
-  listStyleType: "none",
-  background: "transparent",
-  paddingLeft: "0px",
+export const StyledLi = styled('li', {
+  listStyleType: 'none',
+  background: 'transparent',
+  paddingLeft: '0px',
 });

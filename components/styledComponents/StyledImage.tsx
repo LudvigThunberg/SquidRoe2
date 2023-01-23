@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { styled } from "../../stitches.config";
+import Image from 'next/image';
+import { styled } from '../../stitches.config';
 
 export const StyledImage = styled(Image, {
-  borderRadius: "50%",
+  borderRadius: '50%',
 });
