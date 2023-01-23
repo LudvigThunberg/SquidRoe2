@@ -20,4 +20,17 @@ export const StyledALink = styled('a', {
   '&:hover': {
     animation: `${grow} 400ms linear`,
   },
+  variants: {
+    onContact: {
+      true: {
+        width: '80px',
+        '@bp2': {
+          width: '120px',
+        },
+        '@bp3': {
+          width: '130px',
+        },
+      },
+    },
+  },
 });

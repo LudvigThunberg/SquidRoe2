@@ -1,6 +1,6 @@
 import Error from 'next/error';
 import { getPlaylists, getSoc } from '../services/requestService';
-import { ContactLinkResponse, PlaylistModel } from '../models/responseModels';
+import { ContactLinkObject, PlaylistModel } from '../models/responseModels';
 import { Heading } from '../components/styledComponents/Heading';
 import { SocialsLinks } from '../components/basic/SocialsLinks';
 import { AllPlaylists } from '../components/basic/AllPlaylists';
@@ -9,7 +9,7 @@ import { fadeInAndUp } from '../motionAnimations/motionAnimations';
 
 interface PlaylistsProps {
   errorCode: number;
-  links: ContactLinkResponse;
+  links: ContactLinkObject[];
   playlists: PlaylistModel[];
 }
 
@@ -58,10 +58,14 @@ export async function getServerSideProps() {
       ),
     ]);
 
-    const [links, playlistsUnsorted] = await res;
+    const [linksUnsorted, playlistsUnsorted] = await res;
 
     const playlists = playlistsUnsorted.data.sort(
       (a, b) => a.attributes.order - b.attributes.order,
+    );
+
+    const links = linksUnsorted.data.filter(
+      (link) => link.attributes.contactLink,
     );
 
     return { props: { errorCode: NaN, links, playlists } };

@@ -3,12 +3,12 @@ import { Box } from '../styledComponents/Box';
 import { SocialMediaLink } from './SocialMediaLink';
 
 interface SocialLinksProps {
-  data: { data: ContactLinkObject[] };
+  data: ContactLinkObject[];
   onContact?: boolean;
 }
 
 export const SocialsLinks = ({ data, onContact }: SocialLinksProps) => {
-  const socialLinks = data.data.map((link) => (
+  const socialLinks = data.map((link) => (
     <SocialMediaLink key={link.id} link={link} onContact={onContact} />
   ));
   return (

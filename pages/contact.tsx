@@ -5,12 +5,12 @@ import { EmailForm } from '../components/basic/EmailForm';
 import { SocialsLinks } from '../components/basic/SocialsLinks';
 import { Heading } from '../components/styledComponents/Heading';
 import { MotionContainer } from '../components/styledComponents/MotionContainer';
-import { ContactLinkResponse } from '../models/responseModels';
+import { ContactLinkObject } from '../models/responseModels';
 import { getSoc } from '../services/requestService';
 import { fadeInAndUp } from '../motionAnimations/motionAnimations';
 
 interface ContactProps {
-  links: ContactLinkResponse;
+  links: ContactLinkObject[];
   errorCode: number;
 }
 
@@ -55,9 +55,13 @@ export default function Contact({ links, errorCode }: ContactProps) {
 
 export async function getServerSideProps() {
   try {
-    const links = await getSoc(
+    const linksUnsorted = await getSoc(
       process.env.NEXT_PUBLIC_BASE_URL as string,
       process.env.NEXT_PUBLIC_API_KEY as string,
+    );
+
+    const links = linksUnsorted.data.filter(
+      (link) => link.attributes.contactLink || link.attributes.email,
     );
     return { props: { errorCode: NaN, links } };
   } catch (error: any) {
