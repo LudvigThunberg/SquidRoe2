@@ -4,7 +4,7 @@ import { SocialsLinks } from '../components/basic/SocialsLinks';
 import { Heading } from '../components/styledComponents/Heading';
 import {
   AlbumModel,
-  ContactLinkResponse,
+  ContactLinkObject,
   IconModelResponse,
 } from '../models/responseModels';
 import { getIcons, getReleases, getSoc } from '../services/requestService';
@@ -12,7 +12,7 @@ import { MotionContainer } from '../components/styledComponents/MotionContainer'
 import { fadeInAndUp } from '../motionAnimations/motionAnimations';
 
 interface HomeProps {
-  links: ContactLinkResponse;
+  links: ContactLinkObject[];
   releases: AlbumModel[];
   icons: IconModelResponse;
   errorCode: number;
@@ -69,12 +69,16 @@ export async function getServerSideProps() {
       ),
     ]);
 
-    const [links, releasesUnsorted, icons] = await res;
+    const [linksUnsorted, releasesUnsorted, icons] = await res;
 
     const releases = releasesUnsorted.data.sort(
       (a, b) =>
         parseInt(b.attributes.releaseDate, 10) -
         parseInt(a.attributes.releaseDate, 10),
+    );
+
+    const links = linksUnsorted.data.filter(
+      (link) => link.attributes.contactLink,
     );
 
     return { props: { errorCode: NaN, links, releases, icons } };

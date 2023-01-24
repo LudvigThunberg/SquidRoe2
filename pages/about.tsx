@@ -2,7 +2,7 @@ import Error from 'next/error';
 import { ToastContainer } from 'react-toastify';
 import { SocialsLinks } from '../components/basic/SocialsLinks';
 import { Heading } from '../components/styledComponents/Heading';
-import { AboutModel, ContactLinkResponse } from '../models/responseModels';
+import { AboutModel, ContactLinkObject } from '../models/responseModels';
 import { getAboutContent, getSoc } from '../services/requestService';
 import { AboutSection } from '../components/basic/AboutSection';
 import { Box } from '../components/styledComponents/Box';
@@ -10,7 +10,7 @@ import { MotionContainer } from '../components/styledComponents/MotionContainer'
 import { fadeInAndUp } from '../motionAnimations/motionAnimations';
 
 interface AboutProps {
-  links: ContactLinkResponse;
+  links: ContactLinkObject[];
   about: AboutModel[];
   errorCode: number;
 }
@@ -97,10 +97,14 @@ export async function getServerSideProps() {
       ),
     ]);
 
-    const [links, aboutUnsorted] = await res;
+    const [linksUnsorted, aboutUnsorted] = await res;
 
     const about = aboutUnsorted.data.sort(
       (a, b) => a.attributes.order - b.attributes.order,
+    );
+
+    const links = linksUnsorted.data.filter(
+      (link) => link.attributes.contactLink,
     );
 
     return { props: { errorCode: NaN, links, about } };
