@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form';
+import { Box } from '../styledComponents/Box';
 import { Paragraph } from '../styledComponents/Paragraph';
 import { StyledInput } from '../styledComponents/StyledInput';
 
@@ -28,7 +29,7 @@ export const FormField = ({
     formState: { errors },
   } = useFormContext();
   return (
-    <>
+    <Box>
       <StyledInput
         type={inputType}
         placeholder={labelText}
@@ -46,6 +47,6 @@ export const FormField = ({
           {message}
         </Paragraph>
       )}
-    </>
+    </Box>
   );
 };

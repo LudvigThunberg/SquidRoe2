@@ -19,8 +19,7 @@ export const AboutSection = ({ aboutSection }: SingleAboutProps) => {
   }, []);
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
+    <div>
       {isEven ? (
         <Box css={{ display: 'flex', gap: '10px' }}>
           <Box
@@ -98,6 +97,6 @@ export const AboutSection = ({ aboutSection }: SingleAboutProps) => {
           </Box>
         </Box>
       )}
-    </>
+    </div>
   );
 };
