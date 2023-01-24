@@ -5,10 +5,10 @@ export const StyledForm = styled('form', {
   flexDirection: 'column',
   gap: '10px',
   background: 'transparent',
-  width: '90%',
+  width: '100%',
   maxWidth: '270px',
   transition: 'all 0.5s ease-in-out',
-  '@bp2': { maxWidth: '350px' },
+  '@bp2': {},
   variants: {
     isOpen: {
       true: { opacity: '0' },

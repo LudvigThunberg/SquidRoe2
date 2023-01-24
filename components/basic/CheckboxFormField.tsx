@@ -28,7 +28,7 @@ export const CheckboxFormField = ({
     formState: { errors },
   } = useFormContext();
   return (
-    <>
+    <div>
       <StyledInput
         css={{ maxWidth: 'unset', minWidth: 'unset' }}
         type={inputType}
@@ -47,6 +47,6 @@ export const CheckboxFormField = ({
           {message}
         </Paragraph>
       )}
-    </>
+    </div>
   );
 };

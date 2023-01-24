@@ -39,6 +39,7 @@ export interface IconModel {
     name: string;
     imageUrl: string;
   };
+  id: number;
 }
 
 export interface IconModelResponse {

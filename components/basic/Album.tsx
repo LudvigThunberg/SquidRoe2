@@ -23,10 +23,9 @@ export const Album = ({ album, icons }: AlbumProps) => {
     }
   });
 
-  const iconLinks = allIconLinks.map((iconLink, index) => (
+  const iconLinks = allIconLinks.map((iconLink) => (
     <StyledALink
-      // eslint-disable-next-line react/no-array-index-key
-      key={index}
+      key={iconLink.id}
       target="_blank"
       href={iconLink.link}
       css={{ background: 'transparent', width: '30px' }}

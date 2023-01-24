@@ -7,6 +7,7 @@ export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
       icon: icon.attributes.imageUrl,
       link: album.attributes.applemusicLink,
       name: icon.attributes.name,
+      id: icon.id,
     };
     return iconLink;
   }
@@ -15,6 +16,7 @@ export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
       icon: icon.attributes.imageUrl,
       link: album.attributes.bandcampLink,
       name: icon.attributes.name,
+      id: icon.id,
     };
     return iconLink;
   }
@@ -23,6 +25,7 @@ export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
       icon: icon.attributes.imageUrl,
       link: album.attributes.beatportLink,
       name: icon.attributes.name,
+      id: icon.id,
     };
     return iconLink;
   }
@@ -31,6 +34,7 @@ export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
       icon: icon.attributes.imageUrl,
       link: album.attributes.deezerLink,
       name: icon.attributes.name,
+      id: icon.id,
     };
     return iconLink;
   }
@@ -39,6 +43,7 @@ export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
       icon: icon.attributes.imageUrl,
       link: album.attributes.spotifyLink,
       name: icon.attributes.name,
+      id: icon.id,
     };
     return iconLink;
   }
@@ -50,6 +55,7 @@ export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
       icon: icon.attributes.imageUrl,
       link: album.attributes.soundcloudLink,
       name: icon.attributes.name,
+      id: icon.id,
     };
     return iconLink;
   }
@@ -61,6 +67,7 @@ export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
       icon: icon.attributes.imageUrl,
       link: album.attributes.traxsourceLink,
       name: icon.attributes.name,
+      id: icon.id,
     };
     return iconLink;
   }
