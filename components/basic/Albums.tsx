@@ -1,10 +1,9 @@
-import { AlbumModel, IconModelResponse } from '../../models/responseModels';
+import { IconModelResponse, ReleaseModel } from '../../models/responseModels';
 import { Box } from '../styledComponents/Box';
 import { Album } from './Album';
 
 interface AlbumsProps {
-  releases: AlbumModel[];
-
+  releases: ReleaseModel[];
   icons: IconModelResponse;
 }
 

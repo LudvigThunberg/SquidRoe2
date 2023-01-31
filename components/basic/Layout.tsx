@@ -1,5 +1,6 @@
 import router from 'next/router';
 import { useRecoilValue } from 'recoil';
+import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { ContentContainer } from '../styledComponents/ContentContainer';
 import { Header } from './Header';
@@ -22,6 +23,18 @@ export const Layout = ({ children }: LayoutProps) => {
     <ContentContainer isOnIndex={onIndex} isOpen={isOpen}>
       <Header />
       {children}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </ContentContainer>
   );
 };

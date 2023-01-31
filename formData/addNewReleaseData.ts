@@ -1,0 +1,121 @@
+/* eslint-disable no-useless-escape */
+export const addNewReleaseData = [
+  {
+    labelText: 'Artist',
+    inputType: 'text',
+    id: 'artist',
+    message: 'Need to be filled out',
+    required: true,
+    minLength: 1,
+  },
+  {
+    labelText: 'Title',
+    inputType: 'text',
+    id: 'title',
+    message: 'Need to be filled out',
+    required: true,
+    minLength: 1,
+  },
+  {
+    labelText: 'Soundcloud Link',
+    inputType: 'text',
+    id: 'soundcloudLink',
+    message: 'Need to be filled out as a proper url',
+    required: true,
+    minLength: 1,
+    pattern:
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+  },
+  {
+    labelText: 'Bandcamp link',
+    inputType: 'text',
+    id: 'bandcampLink',
+    message: 'Need to be filled out as a proper url',
+    required: true,
+    minLength: 1,
+    pattern:
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+  },
+  {
+    labelText: 'Bandcamp embed',
+    inputType: 'text',
+    id: 'bandcampEmbed',
+    message: 'Need to be filled out',
+    required: true,
+    minLength: 1,
+  },
+  {
+    labelText: 'Cover art',
+    inputType: 'file',
+    id: 'coverArt',
+    message: 'Add an image',
+    required: true,
+    minLength: 1,
+    accept: '.jpg, .jpeg, .png',
+  },
+  {
+    labelText: 'Release Date',
+    inputType: 'date',
+    id: 'releaseDate',
+    message: 'Input Releasedate',
+    required: true,
+  },
+  {
+    labelText: 'Remix by (optional)',
+    inputType: 'text',
+    id: 'remixedBy',
+    message: 'Need to be filled out',
+    required: false,
+    minLength: 1,
+  },
+  {
+    labelText: 'Apple music link (optional)',
+    inputType: 'text',
+    id: 'applemusicLink',
+    message: 'Need to be filled out as a proper url',
+    required: false,
+    minLength: 1,
+    pattern:
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+  },
+  {
+    labelText: 'Deezer link (optional)',
+    inputType: 'text',
+    id: 'deezerLink',
+    message: 'Need to be filled out as a proper url',
+    required: false,
+    minLength: 1,
+    pattern:
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+  },
+  {
+    labelText: 'Spotify link (optional)',
+    inputType: 'text',
+    id: 'spotifyLink',
+    message: 'Need to be filled out as a proper url',
+    required: false,
+    minLength: 1,
+    pattern:
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+  },
+  {
+    labelText: 'Traxsource link (optional)',
+    inputType: 'text',
+    id: 'traxsourceLink',
+    message: 'Need to be filled out as a proper url',
+    required: false,
+    minLength: 1,
+    pattern:
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+  },
+  {
+    labelText: 'Beatport link (optional)',
+    inputType: 'text',
+    id: 'beatportLink',
+    message: 'Need to be filled out as a proper url',
+    required: false,
+    minLength: 1,
+    pattern:
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/,
+  },
+];

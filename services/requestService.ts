@@ -4,8 +4,11 @@ import {
   ContactLinkResponse,
   IconModelResponse,
   PlaylistModelResponse,
+  ReleaseModel,
 } from '../models/responseModels';
 import { get, post } from './handleRequests';
+
+const LOCAL_BASE_URL = process.env.NEXT_PUBLIC_LOCAL_BASE_URL;
 
 export const getSoc = async (baseUrl: string, apiKey: string) => {
   const res = await get<ContactLinkResponse>(`${baseUrl}contact-links`, apiKey);
@@ -42,5 +45,22 @@ export const getAboutContent = async (baseUrl: string, apiKey: string) => {
 
 export const subscribeToMailingList = async (baseUrl: string, data: object) => {
   const res = await post(`${baseUrl}mailchimp`, data);
+  return res;
+};
+
+// new
+
+export const getAllReleases = async () => {
+  const res = await get<ReleaseModel[]>(`${LOCAL_BASE_URL}get-releases`);
+  return res;
+};
+
+export const uploadRelease = async (data: object) => {
+  const res = await post(`${LOCAL_BASE_URL}upload-release`, data);
+  return res;
+};
+
+export const uploadPlaylist = async (data: object) => {
+  const res = await post(`${LOCAL_BASE_URL}upload-playlist`, data);
   return res;
 };

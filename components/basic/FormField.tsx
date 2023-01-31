@@ -12,6 +12,7 @@ interface FormFieldProps {
   pattern?: RegExp;
   required: boolean;
   message: string;
+  accept?: string;
 }
 
 export const FormField = ({
