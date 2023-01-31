@@ -1,11 +1,12 @@
 import Error from 'next/error';
-import { getPlaylists, getSoc } from '../services/requestService';
+import { getSoc } from '../services/requestService';
 import { ContactLinkObject, PlaylistModel } from '../models/responseModels';
 import { Heading } from '../components/styledComponents/Heading';
 import { SocialsLinks } from '../components/basic/SocialsLinks';
 import { AllPlaylists } from '../components/basic/AllPlaylists';
 import { MotionContainer } from '../components/styledComponents/MotionContainer';
 import { fadeInAndUp } from '../motionAnimations/motionAnimations';
+import { db } from '../database/DB';
 
 interface PlaylistsProps {
   errorCode: number;
@@ -46,33 +47,25 @@ export default function Playlists({
 }
 
 export async function getServerSideProps() {
-  try {
-    const res = Promise.all([
-      getSoc(
+  const res = Promise.all([
+    getSoc(
+      process.env.NEXT_PUBLIC_BASE_URL as string,
+      process.env.NEXT_PUBLIC_API_KEY as string,
+    ),
+    db.getAllPlaylists(),
+    /* getPlaylists(
         process.env.NEXT_PUBLIC_BASE_URL as string,
         process.env.NEXT_PUBLIC_API_KEY as string,
-      ),
-      getPlaylists(
-        process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string,
-      ),
-    ]);
+      ), */
+  ]);
 
-    const [linksUnsorted, playlistsUnsorted] = await res;
+  const [linksUnsorted, playlistsUnsorted] = await res;
 
-    const playlists = playlistsUnsorted.data.sort(
-      (a, b) => a.attributes.order - b.attributes.order,
-    );
+  const playlists = playlistsUnsorted.sort((a, b) => a.order - b.order);
 
-    const links = linksUnsorted.data.filter(
-      (link) => link.attributes.contactLink,
-    );
+  const links = linksUnsorted.data.filter(
+    (link) => link.attributes.contactLink,
+  );
 
-    return { props: { errorCode: NaN, links, playlists } };
-  } catch (error: any) {
-    if (error.response.status) {
-      return { props: { errorCode: error.response.status } };
-    }
-    return { props: { errorCode: 500 } };
-  }
+  return { props: { errorCode: NaN, links, playlists } };
 }

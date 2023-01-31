@@ -3,17 +3,21 @@ import { Albums } from '../components/basic/Albums';
 import { SocialsLinks } from '../components/basic/SocialsLinks';
 import { Heading } from '../components/styledComponents/Heading';
 import {
-  AlbumModel,
   ContactLinkObject,
   IconModelResponse,
+  ReleaseModel,
 } from '../models/responseModels';
-import { getIcons, getReleases, getSoc } from '../services/requestService';
+import {
+  /* getAllReleases, */ getIcons,
+  getSoc,
+} from '../services/requestService';
 import { MotionContainer } from '../components/styledComponents/MotionContainer';
 import { fadeInAndUp } from '../motionAnimations/motionAnimations';
+import { db } from '../database/DB';
 
 interface HomeProps {
   links: ContactLinkObject[];
-  releases: AlbumModel[];
+  releases: ReleaseModel[];
   icons: IconModelResponse;
   errorCode: number;
 }
@@ -53,39 +57,31 @@ export default function Releases({
 }
 
 export async function getServerSideProps() {
-  try {
-    const res = Promise.all([
-      getSoc(
-        process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string,
-      ),
-      getReleases(
-        process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string,
-      ),
-      getIcons(
-        process.env.NEXT_PUBLIC_BASE_URL as string,
-        process.env.NEXT_PUBLIC_API_KEY as string,
-      ),
-    ]);
+  const res = Promise.all([
+    getSoc(
+      process.env.NEXT_PUBLIC_BASE_URL as string,
+      process.env.NEXT_PUBLIC_API_KEY as string,
+    ),
+    /* getReleases(
+      process.env.NEXT_PUBLIC_BASE_URL as string,
+      process.env.NEXT_PUBLIC_API_KEY as string,
+    ), */
+    db.getAllReleases(),
+    getIcons(
+      process.env.NEXT_PUBLIC_BASE_URL as string,
+      process.env.NEXT_PUBLIC_API_KEY as string,
+    ),
+  ]);
 
-    const [linksUnsorted, releasesUnsorted, icons] = await res;
+  const [linksUnsorted, releasesUnsorted, icons /* allReleases */] = await res;
 
-    const releases = releasesUnsorted.data.sort(
-      (a, b) =>
-        parseInt(b.attributes.releaseDate, 10) -
-        parseInt(a.attributes.releaseDate, 10),
-    );
+  const releases = releasesUnsorted.sort(
+    (a, b) => parseInt(b.releaseDate, 10) - parseInt(a.releaseDate, 10),
+  );
 
-    const links = linksUnsorted.data.filter(
-      (link) => link.attributes.contactLink,
-    );
+  const links = linksUnsorted.data.filter(
+    (link) => link.attributes.contactLink,
+  );
 
-    return { props: { errorCode: NaN, links, releases, icons } };
-  } catch (error: any) {
-    if (error.response.status) {
-      return { props: { errorCode: error.response.status } };
-    }
-    return { props: { errorCode: 500 } };
-  }
+  return { props: { errorCode: NaN, links, releases, icons } };
 }

@@ -46,17 +46,6 @@ export interface IconModelResponse {
   data: IconModel[];
 }
 
-export interface PlaylistModel {
-  attributes: {
-    title: string;
-    creator: string;
-    playlistLink: string;
-    playlistIframe: string;
-    order: number;
-  };
-  id: number;
-}
-
 export interface PlaylistModelResponse {
   data: PlaylistModel[];
 }
@@ -73,4 +62,30 @@ export interface AboutModel {
 
 export interface AboutModelResponse {
   data: AboutModel[];
+}
+
+export interface ReleaseModel {
+  artist: string;
+  title: string;
+  coverArt: string;
+  releaseDate: string;
+  bandcampEmbed: string;
+  soundcloudLink: string;
+  applemusicLink?: string;
+  bandcampLink?: string;
+  beatportLink?: string;
+  deezerLink?: string;
+  spotifyLink?: string;
+  traxsourceLink?: string;
+  id: string;
+  remixedBy?: string;
+}
+
+export interface PlaylistModel {
+  title: string;
+  creator: string;
+  playlistLink: string;
+  playlistIframe: string;
+  order: number;
+  id: string;
 }

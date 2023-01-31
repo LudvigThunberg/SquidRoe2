@@ -1,18 +1,18 @@
 import { pairLinkAndIcons } from '../../helpers/linkIconPairingHelper';
 import { IconLinkModel } from '../../models/helperModels';
-import { AlbumModel, IconModelResponse } from '../../models/responseModels';
+import { IconModelResponse, ReleaseModel } from '../../models/responseModels';
 import { Box } from '../styledComponents/Box';
 import { Heading } from '../styledComponents/Heading';
 import { Img } from '../styledComponents/Img';
 import { StyledALink } from '../styledComponents/StyledALink';
 
 interface AlbumProps {
-  album: AlbumModel;
+  album: ReleaseModel;
   icons: IconModelResponse;
 }
 
 export const Album = ({ album, icons }: AlbumProps) => {
-  const { artist, coverLink, bandcampEmbed, title } = album.attributes;
+  const { artist, coverArt, bandcampEmbed, title, remixedBy } = album;
 
   const allIconLinks: IconLinkModel[] = [];
 
@@ -36,10 +36,15 @@ export const Album = ({ album, icons }: AlbumProps) => {
 
   return (
     <Box variant="contentContainer">
-      <Box css={{ paddingBottom: '10px' }}>
+      <Box css={{ paddingBottom: '10px', display: 'flex', gap: '10px' }}>
         <Heading as="h3" css={{ fontSize: '11px' }}>
           {artist} - {title}
         </Heading>
+        {remixedBy && (
+          <Heading as="h3" css={{ fontSize: '11px' }}>
+            ({remixedBy} Remix)
+          </Heading>
+        )}
       </Box>
 
       <Box
@@ -68,7 +73,7 @@ export const Album = ({ album, icons }: AlbumProps) => {
             },
           }}
         >
-          <Img css={{ borderRadius: '2px' }} src={coverLink} />
+          <Img css={{ borderRadius: '2px' }} src={coverArt} />
         </Box>
         <Box
           css={{

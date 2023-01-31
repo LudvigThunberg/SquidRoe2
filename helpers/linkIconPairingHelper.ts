@@ -1,71 +1,65 @@
 import { IconLinkModel } from '../models/helperModels';
-import { AlbumModel, IconModel } from '../models/responseModels';
+import { IconModel, ReleaseModel } from '../models/responseModels';
 
-export const pairLinkAndIcons = (icon: IconModel, album: AlbumModel) => {
-  if (icon.attributes.name === 'apple' && album.attributes.applemusicLink) {
+export const pairLinkAndIcons = (icon: IconModel, album: ReleaseModel) => {
+  if (icon.attributes.name === 'apple' && album.applemusicLink) {
     const iconLink: IconLinkModel = {
       icon: icon.attributes.imageUrl,
-      link: album.attributes.applemusicLink,
+      link: album.applemusicLink,
       name: icon.attributes.name,
       id: icon.id,
     };
     return iconLink;
   }
-  if (icon.attributes.name === 'bandcamp' && album.attributes.bandcampLink) {
+  if (icon.attributes.name === 'bandcamp' && album.bandcampLink) {
     const iconLink: IconLinkModel = {
       icon: icon.attributes.imageUrl,
-      link: album.attributes.bandcampLink,
+      link: album.bandcampLink,
       name: icon.attributes.name,
       id: icon.id,
     };
     return iconLink;
   }
-  if (icon.attributes.name === 'beatport' && album.attributes.beatportLink) {
+  if (icon.attributes.name === 'beatport' && album.beatportLink) {
     const iconLink: IconLinkModel = {
       icon: icon.attributes.imageUrl,
-      link: album.attributes.beatportLink,
+      link: album.beatportLink,
       name: icon.attributes.name,
       id: icon.id,
     };
     return iconLink;
   }
-  if (icon.attributes.name === 'deezer' && album.attributes.deezerLink) {
+  if (icon.attributes.name === 'deezer' && album.deezerLink) {
     const iconLink: IconLinkModel = {
       icon: icon.attributes.imageUrl,
-      link: album.attributes.deezerLink,
+      link: album.deezerLink,
       name: icon.attributes.name,
       id: icon.id,
     };
     return iconLink;
   }
-  if (icon.attributes.name === 'spotify' && album.attributes.spotifyLink) {
+  if (icon.attributes.name === 'spotify' && album.spotifyLink) {
     const iconLink: IconLinkModel = {
       icon: icon.attributes.imageUrl,
-      link: album.attributes.spotifyLink,
+      link: album.spotifyLink,
       name: icon.attributes.name,
       id: icon.id,
     };
     return iconLink;
   }
-  if (
-    icon.attributes.name === 'soundcloud' &&
-    album.attributes.soundcloudLink
-  ) {
+  if (icon.attributes.name === 'soundcloud' && album.soundcloudLink) {
     const iconLink: IconLinkModel = {
       icon: icon.attributes.imageUrl,
-      link: album.attributes.soundcloudLink,
+      link: album.soundcloudLink,
       name: icon.attributes.name,
       id: icon.id,
     };
     return iconLink;
   }
-  if (
-    icon.attributes.name === 'traxsource' &&
-    album.attributes.traxsourceLink
-  ) {
+  if (icon.attributes.name === 'traxsource' && album.traxsourceLink) {
     const iconLink: IconLinkModel = {
       icon: icon.attributes.imageUrl,
-      link: album.attributes.traxsourceLink,
+      link: album.traxsourceLink,
       name: icon.attributes.name,
       id: icon.id,
     };

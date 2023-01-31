@@ -1,5 +1,4 @@
 import Error from 'next/error';
-import { ToastContainer } from 'react-toastify';
 import { SocialsLinks } from '../components/basic/SocialsLinks';
 import { Heading } from '../components/styledComponents/Heading';
 import { AboutModel, ContactLinkObject } from '../models/responseModels';
@@ -67,18 +66,6 @@ export default function About({ links, errorCode, about }: AboutProps) {
         {abouts}
       </Box>
       <SocialsLinks onContact={false} data={links} />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </MotionContainer>
   );
 }
